@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour {
 		if (!GetComponent<NetworkView> ().isMine) {
 			GetComponentInChildren<SixenseHandsController> ().enabled = false;
 			foreach (SixenseHand sh in GetComponentsInChildren<SixenseHand> ()) sh.enabled = false;
+			Destroy(gameObject.GetComponentInChildren<Camera>().gameObject);
 		}
 		foreach(RockGiantDamage rgd in rockGiantDamageScripts) rgd.enabled = false;
 	}

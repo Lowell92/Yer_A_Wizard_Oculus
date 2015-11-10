@@ -245,7 +245,7 @@ public class ActivateSpell : MonoBehaviour {
 	void cast_fireball() {
 		print("fireball");
 		Quaternion angle = camTransform.rotation;
-		Instantiate(spellMisslePrefab,camTransform.position,angle);
+		Network.Instantiate(spellMisslePrefab,camTransform.position,angle,0);
 	}
 	
 	void cast_shield() {

@@ -1,26 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SynchronizePosition : MonoBehaviour {
-
+public class SyncPlayerB : MonoBehaviour {
+	
 	NetworkView networkView;
-
+	
 	//Movement Interpolation
 	private float lastSynchronizationTime = 0f;
 	private float syncDelay = 0f;
 	private Vector3 syncStartPosition = Vector3.zero;
 	private Vector3 syncEndPosition = Vector3.zero;
-
+	
 	void Start() {
 		networkView = GetComponent<NetworkView>();
 	}
-
+	
 	void Update() {
 		//Interpolate from last to this snapshot
 		if (!networkView.isMine) transform.position = Vector3.Lerp (syncStartPosition, syncEndPosition, (Time.time - lastSynchronizationTime) / syncDelay);
-//		if (!networkView.isMine) print (transform.position);
+		//		if (!networkView.isMine) print (transform.position);
 	}
-
+	
 	void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)
 	{
 		Vector3 syncPosition = Vector3.zero;

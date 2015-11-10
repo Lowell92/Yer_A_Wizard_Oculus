@@ -15,6 +15,7 @@ public class NetworkManager : MonoBehaviour {
 	public int sendRate = 50;
 
 	public GameObject playerPrefab;
+	public GameObject playerPrefabOTHER;
 
 
 	void Start () {
@@ -61,7 +62,7 @@ public class NetworkManager : MonoBehaviour {
 		if (Network.isServer)
 			Network.Instantiate(playerPrefab, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
 		else
-			Network.Instantiate(playerPrefab, new Vector3(0f, 0f, int.Parse(Network.player.ToString())*5f), Quaternion.identity, 0);
+			Network.Instantiate(playerPrefabOTHER, new Vector3(0f, 0f, int.Parse(Network.player.ToString()+1)*2f), Quaternion.identity, 0);
 	}
 
 	private void connectionFailed() {
